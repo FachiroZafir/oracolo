@@ -11,7 +11,7 @@ function cambiaStato() {
   sveglio = !sveglio;
 
   if (sveglio) {
-    insegna.textContent = 'Ti ascolto, viandante...';
+    insegna.textContent = "Hai svegliato l'oracolo, puoi chiedere 3 desideri";
     pulsante.textContent = "Lascia dormire l'oracolo";
     cabina.classList.add('sveglio');
   } else {
