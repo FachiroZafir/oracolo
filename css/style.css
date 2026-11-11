@@ -4,7 +4,7 @@
   --legno-scuro: #1a0f0a;
   --oro: #d4a24c;
   --avorio: #f3d9a4;
-  --velluto: #5c1a1b;
+  --velluto: #1b2340;
 }
 
 /* Larghezze che includono padding e bordo */
@@ -61,7 +61,7 @@ body {
 
 /* Il fachiro, per ora una sagoma: diventerà un SVG nella Fase 4 */
 .fachiro {
-  width: 50%;
+  width: 60%;
   height: 70%;
   background: #8a5a3c;
   border-radius: 50% 50% 8px 8px;
