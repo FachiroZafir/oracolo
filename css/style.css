@@ -117,3 +117,7 @@ body {
 .cabina.sveglio .fachiro {
   background: #b07a52;               /* il fachiro "si accende" */
 }
+.cabina.sveglio .fessura-gettone {
+  box-shadow: 0 0 40px var(--oro);   /* alone luminoso dorato */
+}
+
