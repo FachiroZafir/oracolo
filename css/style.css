@@ -103,3 +103,16 @@ body {
 .pulsante:active {
   transform: scale(0.96);
 }
+/* === Oracolo sveglio === */
+.vetrina,
+.fachiro {
+  transition: box-shadow 0.8s, background 0.8s;
+}
+
+.cabina.sveglio .vetrina {
+  box-shadow: 0 0 40px var(--oro);   /* alone luminoso dorato */
+}
+
+.cabina.sveglio .fachiro {
+  background: #b07a52;               /* il fachiro "si accende" */
+}
