@@ -105,6 +105,7 @@ body {
 }
 /* === Oracolo sveglio === */
 .vetrina,
+.fessura-gettone,
 .fachiro {
   transition: box-shadow 0.8s, background 0.8s;
 }
