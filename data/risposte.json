@@ -1,0 +1,178 @@
+{
+  "versione": 1,
+  "toni": ["propizio", "ammonitore", "enigmatico"],
+
+  "categorie": {
+    "amore": {
+      "parole": [
+        "amore", "amare", "amo", "ami", "ama", "innamor", "cuore", "fidanzat",
+        "partner", "marito", "moglie", "sposa", "sposo", "sposar", "matrimoni",
+        "nozze", "relazion", "coppia", "bacio", "baci", "tradi", "gelos", "ex",
+        "single", "gemella", "cotta", "crush", "separa", "divorzi", "flirt"
+      ],
+      "risposte": [
+        { "id": "am-p01", "tono": "propizio", "testo": "{nome}, il cuore che cerchi bussa già alla tua porta. Apri senza timore." },
+        { "id": "am-p02", "tono": "propizio", "testo": "Le stelle hanno intrecciato due fili. Uno di essi porta il tuo nome, {nome}." },
+        { "id": "am-p03", "tono": "propizio", "testo": "Un sorriso inatteso cambierà il colore dei tuoi giorni. Accoglilo." },
+        { "id": "am-p04", "tono": "propizio", "testo": "Ciò che è stato seminato con tenerezza fiorirà prima della prossima luna." },
+        { "id": "am-p05", "tono": "propizio", "testo": "{nome}, l'amore che hai donato sta per tornare a te, moltiplicato." },
+        { "id": "am-p06", "tono": "propizio", "testo": "Una parola gentile aprirà la porta che credevi chiusa per sempre." },
+        { "id": "am-p07", "tono": "propizio", "testo": "Il fuoco che senti non è un'illusione. Nutrilo con pazienza e brucerà a lungo." },
+        { "id": "am-p08", "tono": "propizio", "testo": "Chi pensi lontano ti pensa più spesso di quanto immagini." },
+        { "id": "am-p09", "tono": "propizio", "testo": "Il destino ha già scritto un incontro sulla tua strada. Cammina a testa alta." },
+        { "id": "am-p10", "tono": "propizio", "testo": "Due anime che si cercano finiscono sempre per trovarsi. La tua è vicina, {nome}." },
+
+        { "id": "am-a01", "tono": "ammonitore", "testo": "Non tutto ciò che brilla negli occhi altrui è luce, {nome}. Guarda due volte." },
+        { "id": "am-a02", "tono": "ammonitore", "testo": "Chi corre verso il cuore altrui dimentica spesso il proprio. Rallenta." },
+        { "id": "am-a03", "tono": "ammonitore", "testo": "Le parole dolci pesano poco. Pesa i gesti, {nome}." },
+        { "id": "am-a04", "tono": "ammonitore", "testo": "Una porta chiusa protegge quanto una porta aperta. Non forzarla." },
+        { "id": "am-a05", "tono": "ammonitore", "testo": "La gelosia è un serpente che morde chi lo nutre. Lascialo a digiuno." },
+        { "id": "am-a06", "tono": "ammonitore", "testo": "Prima di chiedere amore, chiediti se sai riceverlo." },
+        { "id": "am-a07", "tono": "ammonitore", "testo": "Ciò che è finito non va riacceso: la cenere sporca le mani." },
+        { "id": "am-a08", "tono": "ammonitore", "testo": "Il silenzio di chi ami è già una risposta. Ascoltalo, {nome}." },
+        { "id": "am-a09", "tono": "ammonitore", "testo": "Non promettere al chiaro di luna ciò che non manterresti alla luce del sole." },
+        { "id": "am-a10", "tono": "ammonitore", "testo": "Il cuore impaziente sceglie in fretta e si pente piano." },
+
+        { "id": "am-e01", "tono": "enigmatico", "testo": "Il nome che cerchi è nascosto in un luogo che visiti ogni giorno." },
+        { "id": "am-e02", "tono": "enigmatico", "testo": "Quando la pioggia tornerà, ricorda questa domanda, {nome}." },
+        { "id": "am-e03", "tono": "enigmatico", "testo": "Due strade, un solo cuore. La terza strada non l'hai ancora vista." },
+        { "id": "am-e04", "tono": "enigmatico", "testo": "Ciò che cerchi altrove ti osserva dallo specchio." },
+        { "id": "am-e05", "tono": "enigmatico", "testo": "Una lettera mai scritta attende ancora la tua mano." },
+        { "id": "am-e06", "tono": "enigmatico", "testo": "Il vento cambierà tre volte prima che il tuo cuore trovi pace." },
+        { "id": "am-e07", "tono": "enigmatico", "testo": "{nome}, l'amore arriva come la notte: nessuno vede il momento esatto." },
+        { "id": "am-e08", "tono": "enigmatico", "testo": "La risposta dorme in una canzone che conosci a memoria." },
+        { "id": "am-e09", "tono": "enigmatico", "testo": "Chi ti ha guardato per primo non è chi ti guarderà per ultimo." },
+        { "id": "am-e10", "tono": "enigmatico", "testo": "Il filo rosso è teso. Non è dato sapere chi lo tiri." }
+      ]
+    },
+
+    "denaro": {
+      "parole": [
+        "soldi", "denaro", "ricco", "ricca", "ricchi", "ricchezz", "vinc", "lotteri", "lotto", "superenalotto",
+        "gratta", "schedin", "scommess", "eredit", "stipendi", "debit", "prestit",
+        "mutuo", "investi", "cripto", "bitcoin", "risparmi", "comprar", "compro",
+        "comprer", "acquist", "fortun", "patrimoni", "affar", "guadagn", "bollett",
+        "tasse", "milion", "miliard", "euro", "pagar", "pagher"
+      ],
+      "risposte": [
+        { "id": "de-p01", "tono": "propizio", "testo": "L'oro scorre verso chi sa attendere. La tua pazienza sarà ripagata, {nome}." },
+        { "id": "de-p02", "tono": "propizio", "testo": "Una porta d'oro si apre dove meno te lo aspetti. Tieni gli occhi aperti." },
+        { "id": "de-p03", "tono": "propizio", "testo": "La fortuna ha imparato il tuo nome, {nome}. Presto verrà a chiamarti." },
+        { "id": "de-p04", "tono": "propizio", "testo": "Ciò che hai seminato con fatica darà frutto prima della fine della stagione." },
+        { "id": "de-p05", "tono": "propizio", "testo": "Una moneta trovata è un segno: altre la seguiranno." },
+        { "id": "de-p06", "tono": "propizio", "testo": "Il tuo ingegno vale più di uno scrigno. Presto qualcuno lo pagherà il giusto." },
+        { "id": "de-p07", "tono": "propizio", "testo": "Le stelle favoriscono il tuo prossimo passo. Fallo senza tremare." },
+        { "id": "de-p08", "tono": "propizio", "testo": "Un peso che porti da tempo si scioglierà come neve al sole. Respira, {nome}." },
+        { "id": "de-p09", "tono": "propizio", "testo": "La ruota gira, e questa volta si ferma dalla tua parte." },
+        { "id": "de-p10", "tono": "propizio", "testo": "L'abbondanza è in cammino verso di te. Prepara la tavola." },
+
+        { "id": "de-a01", "tono": "ammonitore", "testo": "Chi insegue l'oro calpesta ciò che vale di più. Guarda dove metti i piedi." },
+        { "id": "de-a02", "tono": "ammonitore", "testo": "Non fidarti di chi promette ricchezza in fretta, {nome}. La fretta costa cara." },
+        { "id": "de-a03", "tono": "ammonitore", "testo": "La borsa piena attira mani lèste. Custodisci ciò che hai." },
+        { "id": "de-a04", "tono": "ammonitore", "testo": "Il gioco d'azzardo è un pozzo senza fondo. Non calarti dentro." },
+        { "id": "de-a05", "tono": "ammonitore", "testo": "Spendi oggi ciò che ti serve, non ciò che desideri: domani ringrazierai." },
+        { "id": "de-a06", "tono": "ammonitore", "testo": "Una firma frettolosa può pesare per anni. Leggi due volte." },
+        { "id": "de-a07", "tono": "ammonitore", "testo": "La fortuna non ama chi la tratta da serva. Non pretendere." },
+        { "id": "de-a08", "tono": "ammonitore", "testo": "Prima di comprare, chiediti chi stai cercando di stupire." },
+        { "id": "de-a09", "tono": "ammonitore", "testo": "Un prestito dato a cuor leggero torna col cuore pesante." },
+        { "id": "de-a10", "tono": "ammonitore", "testo": "{nome}, il risparmio è un muro: costruiscilo prima della tempesta." },
+
+        { "id": "de-e01", "tono": "enigmatico", "testo": "Il tesoro che cerchi non è fatto di metallo, eppure vale il suo peso in oro." },
+        { "id": "de-e02", "tono": "enigmatico", "testo": "Tre numeri ti verranno in sogno. Non è detto che siano da giocare." },
+        { "id": "de-e03", "tono": "enigmatico", "testo": "La ricchezza arriverà da una mano che ora stringi senza saperlo." },
+        { "id": "de-e04", "tono": "enigmatico", "testo": "Ciò che hai perso tornerà sotto altra forma, {nome}." },
+        { "id": "de-e05", "tono": "enigmatico", "testo": "Guarda in alto prima di guardare in tasca." },
+        { "id": "de-e06", "tono": "enigmatico", "testo": "Il valore delle cose cambia con la luce che le illumina." },
+        { "id": "de-e07", "tono": "enigmatico", "testo": "Una vecchia chiave apre uno scrigno nuovo." },
+        { "id": "de-e08", "tono": "enigmatico", "testo": "La fortuna bussa piano. Chi parla forte non la sente." },
+        { "id": "de-e09", "tono": "enigmatico", "testo": "Il denaro scorre come acqua: dove trova un letto, resta." },
+        { "id": "de-e10", "tono": "enigmatico", "testo": "Conta ciò che hai prima di contare ciò che vuoi, {nome}." }
+      ]
+    },
+
+    "destino": {
+      "parole": [],
+      "risposte": [
+        { "id": "ds-p01", "tono": "propizio", "testo": "{nome}, la strada che temi è quella che ti porterà lontano. Mettiti in cammino." },
+        { "id": "ds-p02", "tono": "propizio", "testo": "Le stelle si sono allineate a tuo favore. Ciò che chiedi si compirà." },
+        { "id": "ds-p03", "tono": "propizio", "testo": "Un nuovo inizio è già scritto. Devi solo voltare pagina." },
+        { "id": "ds-p04", "tono": "propizio", "testo": "Il tuo impegno non è passato inosservato. Presto sarà premiato." },
+        { "id": "ds-p05", "tono": "propizio", "testo": "La risposta è sì, {nome}. Ma solo se lo vuoi davvero." },
+        { "id": "ds-p06", "tono": "propizio", "testo": "Un incontro fortunato cambierà il corso della tua settimana." },
+        { "id": "ds-p07", "tono": "propizio", "testo": "Ciò che sembra un ostacolo è un gradino. Salici sopra." },
+        { "id": "ds-p08", "tono": "propizio", "testo": "Il vento soffia alle tue spalle. Spiega le vele." },
+        { "id": "ds-p09", "tono": "propizio", "testo": "La porta che desideri si aprirà prima della luna piena." },
+        { "id": "ds-p10", "tono": "propizio", "testo": "Hai più alleati di quanti immagini, {nome}. Chiedi e riceverai." },
+
+        { "id": "ds-a01", "tono": "ammonitore", "testo": "Non è ancora il tempo, {nome}. Il frutto acerbo lega la bocca." },
+        { "id": "ds-a02", "tono": "ammonitore", "testo": "Chi vuole tutto subito spesso resta a mani vuote. Abbi pazienza." },
+        { "id": "ds-a03", "tono": "ammonitore", "testo": "Guardati da chi ti loda troppo: la lode a volte è un'esca." },
+        { "id": "ds-a04", "tono": "ammonitore", "testo": "Una decisione presa nell'ira si paga nella calma. Aspetta domani." },
+        { "id": "ds-a05", "tono": "ammonitore", "testo": "La strada più breve non è sempre la più sicura." },
+        { "id": "ds-a06", "tono": "ammonitore", "testo": "Non tutte le battaglie meritano la tua spada, {nome}." },
+        { "id": "ds-a07", "tono": "ammonitore", "testo": "Ciò che nascondi oggi verrà alla luce. Meglio che sia tu a scoprirlo." },
+        { "id": "ds-a08", "tono": "ammonitore", "testo": "Il destino premia l'audacia e punisce l'imprudenza. Impara a distinguerle." },
+        { "id": "ds-a09", "tono": "ammonitore", "testo": "Ascolta il consiglio che non vorresti sentire." },
+        { "id": "ds-a10", "tono": "ammonitore", "testo": "Prima di costruire la torre, controlla le fondamenta." },
+
+        { "id": "ds-e01", "tono": "enigmatico", "testo": "La risposta arriverà da una domanda che qualcun altro farà a te." },
+        { "id": "ds-e02", "tono": "enigmatico", "testo": "Ciò che è in alto è come ciò che è in basso. Guarda entrambi, {nome}." },
+        { "id": "ds-e03", "tono": "enigmatico", "testo": "Il fiume non torna alla sorgente, eppure la sorgente non smette di scorrere." },
+        { "id": "ds-e04", "tono": "enigmatico", "testo": "Quando sentirai suonare tre volte, saprai." },
+        { "id": "ds-e05", "tono": "enigmatico", "testo": "Il velo è sottile, ma non è ancora il momento di sollevarlo." },
+        { "id": "ds-e06", "tono": "enigmatico", "testo": "Ogni porta ha due lati. Tu da quale stai guardando?" },
+        { "id": "ds-e07", "tono": "enigmatico", "testo": "Il tempo darà la sua risposta, e sarà diversa dalla tua domanda." },
+        { "id": "ds-e08", "tono": "enigmatico", "testo": "Cerca il segno nel numero sette, {nome}." },
+        { "id": "ds-e09", "tono": "enigmatico", "testo": "Il sentiero si mostra solo a chi ha già fatto il primo passo." },
+        { "id": "ds-e10", "tono": "enigmatico", "testo": "L'ombra che ti segue conosce la risposta. Voltati piano." }
+      ]
+    }
+  },
+
+  "speciali": {
+    "vuota": {
+      "nota": "Domanda vuota o troppo corta: il gettone NON si consuma",
+      "risposte": [
+        "Lo spirito non ha udito alcuna domanda. Parla più chiaro, viandante.",
+        "Una domanda di poche lettere non smuove le stelle. Il Fachiro attende.",
+        "Le nebbie restano fitte: formula la tua domanda con più parole."
+      ]
+    },
+    "rimprovero": {
+      "nota": "Domanda con parole volgari: il gettone si consuma",
+      "risposte": [
+        "Parole impure offuscano la sfera, {nome}. Le stelle non rispondono all'ingiuria.",
+        "Il Fachiro chiude gli occhi davanti a tanta volgarità. Torna con animo più nobile.",
+        "La sfera si è fatta scura. Chi semina insulti raccoglie silenzio."
+      ]
+    },
+    "salute": {
+      "nota": "Domande su malattia o morte: l'oracolo declina con garbo",
+      "parole": [
+        "malat", "salute", "guari", "morte", "morir", "muor", "muoi", "tumor",
+        "cancro", "ospedal", "medic", "diagnos", "incident", "vivr", "gravidanz",
+        "incint", "esami", "sintom", "terapi", "chemio"
+      ],
+      "risposte": [
+        "Certi veli non vanno sollevati, {nome}. Per il corpo affidati a chi cura, non a chi legge le stelle.",
+        "Sulla vita e sulla salute la sfera tace. Chiedi a un medico ciò che il Fachiro non può vedere.",
+        "Le stelle non leggono il corpo. Su questo, ascolta chi sa curare."
+      ]
+    }
+  },
+
+  "parole_vietate": [
+    "cazz", "merd", "stronz", "vaffanculo", "fanculo", "coglion", "puttan",
+    "troia", "minchi", "bastard", "figa"
+  ],
+
+  "carte": [
+    { "id": "sole",     "nome": "Il Sole",     "tono": "propizio",   "frase": "Il Sole ha voltato il suo volto verso di te..." },
+    { "id": "stella",   "nome": "La Stella",   "tono": "propizio",   "frase": "La Stella brilla sopra il tuo cammino..." },
+    { "id": "chiave",   "nome": "La Chiave",   "tono": "propizio",   "frase": "La Chiave si è voltata per te..." },
+    { "id": "torre",    "nome": "La Torre",    "tono": "ammonitore", "frase": "La Torre trema sopra il tuo cammino..." },
+    { "id": "serpente", "nome": "Il Serpente", "tono": "ammonitore", "frase": "Il Serpente si è destato al tuo passaggio..." },
+    { "id": "luna",     "nome": "La Luna",     "tono": "enigmatico", "frase": "La Luna vela e rivela..." },
+    { "id": "occhio",   "nome": "L'Occhio",    "tono": "enigmatico", "frase": "L'Occhio ha visto ciò che tu non vedi..." }
+  ]
+}
