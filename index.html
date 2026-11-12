@@ -103,102 +103,205 @@
     </div>
     <div class="insegna">Gran Fachiro Zafir</div>
     <div class="vetrina">
-      <svg class="fachiro" viewBox="0 0 300 260" role="img" aria-label="Il Gran Fachiro Zafir con la sfera di cristallo">
+      <svg class="fachiro" viewBox="0 0 300 280" role="img" aria-label="Il Gran Fachiro Zafir con la sfera di cristallo">
         <defs>
-          <!-- Sfumatura della sfera: luminosa al centro, viola ai bordi -->
-          <radialGradient id="luce-sfera" cx="40%" cy="35%" r="65%">
+          <!-- Sfumature: danno volume e luce alle forme -->
+          <radialGradient id="g-pelle" cx="45%" cy="38%" r="70%">
+            <stop offset="0%" stop-color="#cf966b"/>
+            <stop offset="65%" stop-color="#a8714c"/>
+            <stop offset="100%" stop-color="#7f5034"/>
+          </radialGradient>
+          <radialGradient id="g-mano" cx="40%" cy="35%" r="75%">
+            <stop offset="0%" stop-color="#cf966b"/>
+            <stop offset="100%" stop-color="#8f5c3c"/>
+          </radialGradient>
+          <linearGradient id="g-mantello" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#5e1010"/>
+            <stop offset="35%" stop-color="#9e2121"/>
+            <stop offset="50%" stop-color="#b32b2b"/>
+            <stop offset="65%" stop-color="#9e2121"/>
+            <stop offset="100%" stop-color="#5e1010"/>
+          </linearGradient>
+          <linearGradient id="g-manica" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#a52424"/>
+            <stop offset="100%" stop-color="#6a1414"/>
+          </linearGradient>
+          <linearGradient id="g-turbante" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#fdf8ec"/>
+            <stop offset="60%" stop-color="#ebdfc4"/>
+            <stop offset="100%" stop-color="#c7b791"/>
+          </linearGradient>
+          <linearGradient id="g-oro" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#f7dc84"/>
+            <stop offset="50%" stop-color="#cf9b34"/>
+            <stop offset="100%" stop-color="#8a6418"/>
+          </linearGradient>
+          <radialGradient id="g-gemma" cx="40%" cy="35%" r="70%">
+            <stop offset="0%" stop-color="#8ff5c8"/>
+            <stop offset="55%" stop-color="#1f8a63"/>
+            <stop offset="100%" stop-color="#0b4430"/>
+          </radialGradient>
+          <linearGradient id="g-barba" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#3b2619"/>
+            <stop offset="100%" stop-color="#160c07"/>
+          </linearGradient>
+          <linearGradient id="g-tenda" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#3a0d0e"/>
+            <stop offset="25%" stop-color="#5c1819"/>
+            <stop offset="50%" stop-color="#3a0d0e"/>
+            <stop offset="75%" stop-color="#5c1819"/>
+            <stop offset="100%" stop-color="#3a0d0e"/>
+          </linearGradient>
+          <linearGradient id="g-legno" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#5a351c"/>
+            <stop offset="100%" stop-color="#26150b"/>
+          </linearGradient>
+          <linearGradient id="g-piuma" x1="0" y1="1" x2="1" y2="0">
             <stop offset="0%" stop-color="#ffffff"/>
-            <stop offset="45%" stop-color="#b9c8f0"/>
-            <stop offset="100%" stop-color="#4b3a8c"/>
+            <stop offset="100%" stop-color="#d9cdf2"/>
+          </linearGradient>
+          <radialGradient id="luce-sfera" cx="38%" cy="32%" r="70%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="40%" stop-color="#c3d0f5"/>
+            <stop offset="80%" stop-color="#6a58b0"/>
+            <stop offset="100%" stop-color="#3a2a78"/>
           </radialGradient>
         </defs>
 
-        <!-- 1. Tende sullo sfondo -->
-        <g id="tende" fill="#4a1415">
-          <path d="M0 0 H70 Q40 90 0 140 Z"/>
-          <path d="M300 0 H230 Q260 90 300 140 Z"/>
+        <!-- 1. Tende di velluto e mantovana -->
+        <g id="tende">
+          <path d="M0 0 H84 Q58 70 72 138 Q80 176 60 280 H0 Z" fill="url(#g-tenda)"/>
+          <path d="M300 0 H216 Q242 70 228 138 Q220 176 240 280 H300 Z" fill="url(#g-tenda)"/>
+          <path d="M0 0 H300 V12 Q281 26 262 12 Q243 26 224 12 Q205 26 186 12 Q167 26 150 12 Q133 26 114 12 Q95 26 76 12 Q57 26 38 12 Q19 26 0 12 Z" fill="#5c1819" stroke="#d4a24c" stroke-width="1.5"/>
         </g>
 
-        <!-- La persona: tutto ciò che "respira" (corpo, braccia, testa, turbante) -->
+        <!-- La persona: tutto ciò che "respira" -->
         <g id="persona">
-          <!-- 2. Il corpo: mantello rosso con bordo d'oro -->
+          <!-- 2. Il mantello, la tunica e il colletto d'oro -->
           <g id="busto">
-            <path d="M62 260 L92 172 Q150 140 208 172 L238 260 Z" fill="#8e1c1c" stroke="#d4a24c" stroke-width="3"/>
-            <path d="M128 152 L150 200 L172 152" fill="none" stroke="#d4a24c" stroke-width="4"/>
+            <path d="M38 280 L68 198 Q86 180 118 172 L150 190 L182 172 Q214 180 232 198 L262 280 Z" fill="url(#g-mantello)"/>
+            <path d="M94 204 Q88 244 84 280 M206 204 Q212 244 216 280 M120 230 Q118 256 116 280 M180 230 Q182 256 184 280" fill="none" stroke="#4a0c0c" stroke-width="2" opacity="0.45"/>
+            <path d="M122 174 L150 210 L178 174 Z" fill="#ebdfc4"/>
+            <path d="M118 172 L150 214 L182 172" fill="none" stroke="url(#g-oro)" stroke-width="6" stroke-linejoin="round"/>
+            <g fill="#f7dc84">
+              <circle cx="128" cy="186" r="1.6"/><circle cx="136" cy="197" r="1.6"/><circle cx="143" cy="206" r="1.6"/>
+              <circle cx="172" cy="186" r="1.6"/><circle cx="164" cy="197" r="1.6"/><circle cx="157" cy="206" r="1.6"/>
+            </g>
           </g>
 
-          <!-- 3. Le braccia (maniche) -->
-          <g id="braccia" fill="none" stroke="#8e1c1c" stroke-width="20" stroke-linecap="round">
-            <path d="M100 178 Q84 205 108 214"/>
-            <path d="M200 178 Q216 205 192 214"/>
+          <!-- 3. Le maniche e i polsini d'oro -->
+          <g id="braccia">
+            <path d="M104 206 Q72 226 100 236" fill="none" stroke="url(#g-manica)" stroke-width="26" stroke-linecap="round"/>
+            <path d="M196 206 Q228 226 200 236" fill="none" stroke="url(#g-manica)" stroke-width="26" stroke-linecap="round"/>
+            <ellipse cx="102" cy="232" rx="8" ry="12" fill="url(#g-oro)" transform="rotate(-30 102 232)"/>
+            <ellipse cx="198" cy="232" rx="8" ry="12" fill="url(#g-oro)" transform="rotate(30 198 232)"/>
           </g>
 
-          <!-- 4. Collo e testa -->
-          <rect x="139" y="132" width="22" height="26" fill="#9c6a47"/>
+          <!-- 4. Il collo -->
+          <path d="M136 146 L136 176 Q150 184 164 176 L164 146 Z" fill="#94603f"/>
+          <path d="M136 150 Q150 162 164 150 L164 158 Q150 168 136 158 Z" fill="#6e4429" opacity="0.5"/>
+
           <!-- Il capo: testa e turbante si inclinano insieme -->
           <g id="capo">
             <g id="testa">
-              <ellipse cx="121" cy="112" rx="6" ry="9" fill="#9c6a47"/>
-              <ellipse cx="179" cy="112" rx="6" ry="9" fill="#9c6a47"/>
-              <circle cx="121" cy="124" r="3" fill="#d4a24c"/>
-              <circle cx="179" cy="124" r="3" fill="#d4a24c"/>
-              <ellipse cx="150" cy="112" rx="29" ry="34" fill="#b07a52"/>
+              <!-- Orecchie e orecchini -->
+              <path d="M120 98 Q108 94 108 108 Q108 122 121 124 Z" fill="url(#g-pelle)"/>
+              <path d="M117 103 Q112 108 117 117" fill="none" stroke="#7a4a2e" stroke-width="1.5"/>
+              <path d="M180 98 Q192 94 192 108 Q192 122 179 124 Z" fill="url(#g-pelle)"/>
+              <path d="M183 103 Q188 108 183 117" fill="none" stroke="#7a4a2e" stroke-width="1.5"/>
+              <circle cx="113" cy="128" r="4.5" fill="none" stroke="url(#g-oro)" stroke-width="2"/>
+              <circle cx="187" cy="128" r="4.5" fill="none" stroke="url(#g-oro)" stroke-width="2"/>
 
-              <!-- Sopracciglia -->
-              <path d="M131 99 Q139 94 146 99" fill="none" stroke="#2b1a12" stroke-width="3.5" stroke-linecap="round"/>
-              <path d="M154 99 Q161 94 169 99" fill="none" stroke="#2b1a12" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- Il volto, con zigomi e ombre degli occhi -->
+              <path d="M120 84 Q120 68 150 66 Q180 68 180 84 L180 112 Q178 140 162 152 Q150 158 138 152 Q122 140 120 112 Z" fill="url(#g-pelle)"/>
+              <ellipse cx="130" cy="122" rx="8" ry="5" fill="#c0704f" opacity="0.3"/>
+              <ellipse cx="170" cy="122" rx="8" ry="5" fill="#c0704f" opacity="0.3"/>
+              <ellipse cx="137" cy="103" rx="11" ry="6" fill="#6e4429" opacity="0.25"/>
+              <ellipse cx="163" cy="103" rx="11" ry="6" fill="#6e4429" opacity="0.25"/>
+
+              <!-- Sopracciglia folte -->
+              <path d="M125 95 Q135 85 147 91 Q137 89 126 98 Z" fill="#1f130c"/>
+              <path d="M175 95 Q165 85 153 91 Q163 89 174 98 Z" fill="#1f130c"/>
 
               <!-- Occhi chiusi: visibili quando l'oracolo dorme -->
-              <g id="occhi-chiusi" fill="none" stroke="#2b1a12" stroke-width="2.5" stroke-linecap="round">
-                <path d="M132 109 Q139 113 146 109"/>
-                <path d="M154 109 Q161 113 168 109"/>
+              <g id="occhi-chiusi" fill="none" stroke="#2b1a12" stroke-width="2.2" stroke-linecap="round">
+                <path d="M128 104 Q137 110 146 104"/>
+                <path d="M154 104 Q163 110 172 104"/>
+                <path d="M131 107 L129 110 M137 109 L137 112 M143 107 L145 110 M157 107 L155 110 M163 109 L163 112 M169 107 L171 110" stroke-width="1"/>
               </g>
 
               <!-- Occhi aperti: visibili quando l'oracolo è sveglio -->
               <g id="occhi-aperti">
-                <ellipse cx="139" cy="108" rx="7" ry="5" fill="#fff7e6"/>
-                <ellipse cx="161" cy="108" rx="7" ry="5" fill="#fff7e6"/>
-                <circle class="pupilla" cx="139" cy="108" r="3" fill="#2b1a12"/>
-                <circle class="pupilla" cx="161" cy="108" r="3" fill="#2b1a12"/>
+                <path d="M128 104 Q137 96 146 104 Q137 110 128 104 Z" fill="#fbf3e4"/>
+                <path d="M154 104 Q163 96 172 104 Q163 110 154 104 Z" fill="#fbf3e4"/>
+                <circle cx="137" cy="103.5" r="3.6" fill="#5a3416"/>
+                <circle cx="163" cy="103.5" r="3.6" fill="#5a3416"/>
+                <circle class="pupilla" cx="137" cy="103.5" r="1.8" fill="#120a06"/>
+                <circle class="pupilla" cx="163" cy="103.5" r="1.8" fill="#120a06"/>
+                <circle cx="138.3" cy="102.3" r="0.9" fill="#ffffff"/>
+                <circle cx="164.3" cy="102.3" r="0.9" fill="#ffffff"/>
+                <path d="M127 104 Q137 94 147 104 M153 104 Q163 94 173 104" fill="none" stroke="#1f130c" stroke-width="1.8" stroke-linecap="round"/>
               </g>
 
-              <!-- Naso -->
-              <path d="M150 110 Q145 122 150 124" fill="none" stroke="#7a4f33" stroke-width="2" stroke-linecap="round"/>
+              <!-- Naso, con luce sul dorso e narici -->
+              <path d="M150 100 Q147 115 142 122 Q150 128 158 122 Q153 115 150 100 Z" fill="#8f5c3c" opacity="0.55"/>
+              <path d="M151 102 Q152 112 153 118" fill="none" stroke="#e0a982" stroke-width="1.5" opacity="0.6"/>
+              <ellipse cx="146" cy="123" rx="2" ry="1.2" fill="#5e3920"/>
+              <ellipse cx="154" cy="123" rx="2" ry="1.2" fill="#5e3920"/>
 
-              <!-- Barba e baffi -->
-              <path id="barba" d="M124 122 Q128 150 150 172 Q172 150 176 122 Q165 136 150 136 Q135 136 124 122 Z" fill="#2b1a12"/>
-              <path id="baffi" d="M150 128 Q140 124 132 130 Q128 134 124 130 M150 128 Q160 124 168 130 Q172 134 176 130" fill="none" stroke="#2b1a12" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- Labbra, sotto i baffi -->
+              <path d="M142 138 Q150 142 158 138 Q150 146 142 138 Z" fill="#8c4a3a"/>
+
+              <!-- Barba a punta, con qualche ciocca -->
+              <path id="barba" d="M122 120 Q120 150 134 170 Q144 190 150 202 Q156 190 166 170 Q180 150 178 120 Q172 136 164 143 Q158 147 150 147 Q142 147 136 143 Q128 136 122 120 Z" fill="url(#g-barba)"/>
+              <path d="M140 154 Q142 174 147 192 M160 154 Q158 174 153 192 M150 150 V198 M132 140 Q134 156 140 168 M168 140 Q166 156 160 168" fill="none" stroke="#5a3a26" stroke-width="1" opacity="0.7"/>
+
+              <!-- Baffi arricciati -->
+              <path id="baffi" d="M150 132 Q140 127 131 131 Q123 135 118 128 Q119 141 133 141 Q144 141 150 136 Q156 141 167 141 Q181 141 182 128 Q177 135 169 131 Q160 127 150 132 Z" fill="#24160e"/>
             </g>
 
-            <!-- 5. Il turbante con la gemma e la piuma -->
+            <!-- 5. Il turbante avvolto, con piuma e gemma -->
             <g id="turbante">
-              <path d="M150 46 Q168 30 174 6" fill="none" stroke="#d4a24c" stroke-width="3" stroke-linecap="round"/>
-              <ellipse cx="150" cy="70" rx="40" ry="26" fill="#efe6d2"/>
-              <path d="M112 74 Q150 56 188 74" fill="none" stroke="#cfc3a8" stroke-width="3"/>
-              <path d="M114 82 Q150 64 186 82" fill="none" stroke="#cfc3a8" stroke-width="3"/>
-              <circle cx="150" cy="70" r="9" fill="#d4a24c"/>
-              <circle id="gemma" cx="150" cy="70" r="6" fill="#1f8a63"/>
+              <path d="M150 60 Q145 30 163 4 Q172 26 159 46 Q155 54 150 60 Z" fill="url(#g-piuma)" stroke="#cbbde6" stroke-width="0.8"/>
+              <path d="M150 60 Q155 34 163 6" fill="none" stroke="#a796cc" stroke-width="1"/>
+              <path d="M104 92 Q96 54 150 40 Q204 54 196 92 Q150 78 104 92 Z" fill="url(#g-turbante)"/>
+              <path d="M108 86 Q150 62 192 86 M108 74 Q146 50 190 70 M118 60 Q150 42 182 58 M112 90 Q136 60 176 46" fill="none" stroke="#c2b28a" stroke-width="2.2" stroke-linecap="round"/>
+              <path d="M104 92 Q150 80 196 92 Q150 88 104 97 Z" fill="#d6c7a2"/>
+              <circle cx="150" cy="70" r="10.5" fill="url(#g-oro)"/>
+              <ellipse id="gemma" cx="150" cy="70" rx="6.5" ry="7.5" fill="url(#g-gemma)"/>
+              <ellipse cx="147.5" cy="67" rx="2" ry="1.4" fill="#ffffff" opacity="0.75"/>
+              <circle cx="150" cy="85" r="2.8" fill="url(#g-oro)"/>
             </g>
           </g>
         </g>
 
-        <!-- 6. L'alone della sfera, dietro al tavolino (acceso dal CSS) -->
-        <circle id="alone-sfera" cx="150" cy="206" r="40" fill="#d4a24c"/>
+        <!-- 6. L'alone della sfera (acceso dal CSS) -->
+        <circle id="alone-sfera" cx="150" cy="214" r="48" fill="#d4a24c"/>
 
-        <!-- 7. Il tavolino -->
-        <rect id="tavolo" x="70" y="236" width="160" height="24" rx="4" fill="#3b2314" stroke="#d4a24c" stroke-width="2"/>
+        <!-- 7. Il tavolino con il drappo -->
+        <g id="tavolo">
+          <rect x="36" y="250" width="228" height="30" fill="url(#g-legno)"/>
+          <line x1="36" y1="250.5" x2="264" y2="250.5" stroke="#d4a24c" stroke-width="2"/>
+          <path d="M78 250 H222 L216 272 Q150 264 84 272 Z" fill="#2e1f52"/>
+          <path d="M84 272 Q150 264 216 272" fill="none" stroke="#d4a24c" stroke-width="2" stroke-dasharray="2 3"/>
+        </g>
 
-        <!-- 8. La sfera di cristallo e il suo piedistallo -->
-        <path d="M134 236 L140 226 H160 L166 236 Z" fill="#d4a24c"/>
-        <circle id="sfera" cx="150" cy="204" r="26" fill="url(#luce-sfera)"/>
+        <!-- 8. La sfera di cristallo, con nebbia, riflesso e piedistallo -->
+        <path d="M124 254 L133 242 H167 L176 254 Z" fill="url(#g-oro)"/>
+        <ellipse cx="150" cy="242" rx="17" ry="3" fill="#f7dc84"/>
+        <circle id="sfera" cx="150" cy="214" r="30" fill="url(#luce-sfera)"/>
+        <path d="M130 222 Q140 206 156 215 Q169 223 160 231 Q148 238 136 231 Z" fill="#ffffff" opacity="0.22"/>
+        <ellipse cx="139" cy="201" rx="8" ry="4.5" fill="#ffffff" opacity="0.7" transform="rotate(-30 139 201)"/>
 
-        <!-- 9. Le mani, sopra la sfera -->
-        <g id="mani" fill="#b07a52">
+        <!-- 9. Le mani, con le dita appoggiate alla sfera -->
+        <g id="mani">
           <g class="mano" id="mano-sinistra">
-            <ellipse cx="116" cy="208" rx="13" ry="9" transform="rotate(-25 116 208)"/>
+            <path d="M98 230 Q96 212 112 204 Q122 200 128 206 Q120 212 122 220 Q124 230 116 238 Q104 242 98 230 Z" fill="url(#g-mano)"/>
+            <path d="M120 206 Q128 200 134 204 M122 213 Q131 208 137 212 M123 221 Q132 218 137 222 M116 236 Q126 238 130 232" fill="none" stroke="#b27a54" stroke-width="4.2" stroke-linecap="round"/>
           </g>
           <g class="mano" id="mano-destra">
-            <ellipse cx="184" cy="208" rx="13" ry="9" transform="rotate(25 184 208)"/>
+            <path d="M202 230 Q204 212 188 204 Q178 200 172 206 Q180 212 178 220 Q176 230 184 238 Q196 242 202 230 Z" fill="url(#g-mano)"/>
+            <path d="M180 206 Q172 200 166 204 M178 213 Q169 208 163 212 M177 221 Q168 218 163 222 M184 236 Q174 238 170 232" fill="none" stroke="#b27a54" stroke-width="4.2" stroke-linecap="round"/>
           </g>
         </g>
       </svg>
