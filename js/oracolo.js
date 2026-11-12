@@ -1,6 +1,6 @@
 // oracolo.js – il cervello dell'oracolo: nessuna grafica qui dentro
 import { leggi, scrivi } from './memoria.js';
-
+ 
 let dati = null;                   // l'archivio delle profezie, caricato una volta sola
 const mazzi = leggi('mazzi', {});  // i mazzi mescolati (solo gli id), ricordati dal telefono
  
@@ -87,7 +87,7 @@ function pesca(chiaveMazzo, risposte) {
   const id = mazzo.pop();                       // toglie l'ultima carta
   mazzi[chiaveMazzo] = mazzo;
   scrivi('mazzi', mazzi);                       // il telefono si ricorda a che punto siamo
-
+ 
   const scelta = risposte.find(r => r.id === id);
   if (scelta) return scelta;
   return casuale(risposte);                     // id non più presente (archivio modificato): ripiego
@@ -118,5 +118,15 @@ export function profetizza(domanda, nome, idCarta) {
     testo: testo.replaceAll('{nome}', nomeGiocatore),
     consumaGettone: consumaGettone
   };
+}
+ 
+// 9. Tre carte diverse, prese a caso dalle sette
+export function treCarteCoperte() {
+  return mescola(dati.carte).slice(0, 3);
+}
+ 
+// 10. Una delle risposte per la domanda vuota o troppo corta
+export function rispostaVuota() {
+  return casuale(dati.speciali.vuota.risposte);
 }
  
