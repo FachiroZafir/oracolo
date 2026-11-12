@@ -78,12 +78,19 @@ function mescola(lista) {
   return copia;
 }
  
-// 7. Pesca dal mazzo indicato; se è vuoto lo rimescola
+// 7. Pesca dal mazzo indicato; se è vuoto lo rimescola. Il mazzo viene salvato
 function pesca(chiaveMazzo, risposte) {
-  if (!mazzi[chiaveMazzo] || mazzi[chiaveMazzo].length === 0) {
-    mazzi[chiaveMazzo] = mescola(risposte);
+  let mazzo = mazzi[chiaveMazzo];
+  if (!mazzo || mazzo.length === 0) {
+    mazzo = mescola(risposte.map(r => r.id));   // un mazzo nuovo fatto di soli id
   }
-  return mazzi[chiaveMazzo].pop();      // toglie e restituisce l'ultima carta
+  const id = mazzo.pop();                       // toglie l'ultima carta
+  mazzi[chiaveMazzo] = mazzo;
+  scrivi('mazzi', mazzi);                       // il telefono si ricorda a che punto siamo
+
+  const scelta = risposte.find(r => r.id === id);
+  if (scelta) return scelta;
+  return casuale(risposte);                     // id non più presente (archivio modificato): ripiego
 }
  
 // 8. La funzione principale: dalla domanda alla profezia
