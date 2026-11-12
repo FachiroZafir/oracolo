@@ -117,8 +117,6 @@ body {
   border: none;
 }
 
-.carta svg { width: 100%; height: 100%; display: block; }
-
 /* Il bigliettino, per ora solo testo su cartoncino */
 .biglietto {
   width: 100%;
@@ -174,3 +172,161 @@ body {
 /* Il simbolo della carta sul bigliettino */
 .biglietto-simbolo { width: 40px; height: 60px; margin: 0 auto 8px; }
 .biglietto-simbolo svg { width: 100%; height: 100%; display: block; }
+
+/* =====================================================
+   FASE 5 – Lezione 10: le animazioni CSS
+   ===================================================== */
+
+/* --- 0. La regola d'oro per animare pezzi di SVG ---
+   Senza queste due righe un pezzo SVG ruoterebbe o si allargherebbe
+   attorno all'angolo in alto a sinistra del disegno, non attorno a sé */
+#persona, #capo, .mano {
+  transform-box: fill-box;
+}
+
+/* --- 1. Il respiro: sempre, lento e profondo --- */
+@keyframes respiro {
+  from { transform: scaleY(1); }
+  to   { transform: scaleY(1.02); }
+}
+
+#persona {
+  transform-origin: 50% 100%;            /* il punto fermo è in basso al centro */
+  animation: respiro 2.5s ease-in-out infinite alternate;
+}
+
+/* --- 2. Il capo si inclina mentre ascolta la domanda --- */
+#capo {
+  transform-origin: 50% 100%;            /* ruota attorno al collo */
+  transition: transform 0.8s ease-in-out;
+}
+
+.cabina[data-stato="domanda"] #capo { transform: rotate(-6deg); }
+.cabina[data-stato="carta"] #capo   { transform: rotate(4deg); }
+
+/* --- 3. Le lampadine sopra l'insegna --- */
+.lampadine {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 8px;
+  margin-bottom: -8px;
+}
+
+.lampadina {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #5a4630;                   /* spenta */
+  border: 1px solid var(--oro);
+}
+
+@keyframes accendi {
+  to {
+    background: #ffe9a8;
+    box-shadow: 0 0 10px #ffd36b;
+  }
+}
+
+@keyframes rincorsa {
+  0%, 100% { background: #ffe9a8; box-shadow: 0 0 10px #ffd36b; }
+  50%      { background: #5a4630; box-shadow: none; }
+}
+
+/* Da sveglio: si accendono una dopo l'altra e restano accese */
+.cabina.sveglio .lampadina {
+  animation: accendi 0.3s forwards;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+/* Durante il rito: luci che si rincorrono */
+.cabina[data-stato="rito"] .lampadina {
+  animation: rincorsa 0.9s infinite;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+/* --- 4. Le mani girano sopra la sfera durante il rito --- */
+@keyframes giro-mano {
+  0%   { transform: translate(0, 0); }
+  25%  { transform: translate(4px, -5px); }
+  50%  { transform: translate(0, -9px); }
+  75%  { transform: translate(-4px, -5px); }
+  100% { transform: translate(0, 0); }
+}
+
+.cabina[data-stato="rito"] .mano {
+  animation: giro-mano 1.2s ease-in-out infinite;
+}
+
+/* la mano destra gira in senso opposto */
+.cabina[data-stato="rito"] #mano-destra {
+  animation-direction: reverse;
+}
+
+/* --- 5. La sfera pulsa: piano quando ascolta, forte nel rito --- */
+@keyframes pulsa {
+  from { opacity: 0.25; }
+  to   { opacity: 0.8; }
+}
+
+.cabina[data-stato="domanda"] #alone-sfera,
+.cabina[data-stato="carta"] #alone-sfera {
+  animation: pulsa 2s ease-in-out infinite alternate;
+}
+
+.cabina[data-stato="rito"] #alone-sfera {
+  animation: pulsa 0.6s ease-in-out infinite alternate;
+}
+
+/* --- 6. Il tremolio della cabina all'inizio del rito --- */
+@keyframes trema {
+  0%, 100% { transform: translate(0, 0); }
+  25%      { transform: translate(-2px, 1px); }
+  75%      { transform: translate(2px, -1px); }
+}
+
+.cabina[data-stato="rito"] {
+  animation: trema 0.12s linear 8;       /* 8 scosse, circa un secondo */
+  animation-delay: 1.2s;
+}
+
+/* --- 7. Le carte si girano in 3D --- */
+.carta { perspective: 600px; }           /* la "distanza dell'occhio": dà profondità */
+
+.carta-interno {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;          /* le due facce vivono nello spazio 3D */
+  transition: transform 0.7s ease-in-out;
+}
+
+.carta.girata .carta-interno { transform: rotateY(180deg); }
+
+.faccia {
+  position: absolute;
+  inset: 0;                              /* occupa tutta la carta */
+  backface-visibility: hidden;           /* di spalle non si vede */
+}
+
+.faccia svg { width: 100%; height: 100%; display: block; }
+
+.faccia-fronte { transform: rotateY(180deg); }   /* parte già girata di spalle */
+
+/* Le carte non scelte si ritirano */
+.carta { transition: opacity 0.6s, transform 0.6s; }
+.carte.scelta .carta:not(.girata) {
+  opacity: 0.25;
+  transform: translateY(10px) scale(0.92);
+}
+
+/* --- 8. Rispetto per chi preferisce meno movimento ---
+   Se nelle impostazioni del telefono è attivo "Riduci movimento",
+   animazioni e transizioni diventano istantanee */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01s !important;
+  }
+}
