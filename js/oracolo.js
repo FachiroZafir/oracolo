@@ -1,7 +1,8 @@
 // oracolo.js – il cervello dell'oracolo: nessuna grafica qui dentro
- 
-let dati = null;      // l'archivio delle profezie, caricato una volta sola
-const mazzi = {};     // i mazzi mescolati, uno per categoria e tono
+import { leggi, scrivi } from './memoria.js';
+
+let dati = null;                   // l'archivio delle profezie, caricato una volta sola
+const mazzi = leggi('mazzi', {});  // i mazzi mescolati (solo gli id), ricordati dal telefono
  
 // 1. Carica il file delle risposte (il percorso è relativo alla PAGINA)
 export async function caricaDati() {
