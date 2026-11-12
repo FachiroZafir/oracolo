@@ -1,3 +1,4 @@
+
 // app.js – la regia: la macchina a stati del gioco
 import { caricaDati, classifica, profetizza, treCarteCoperte, rispostaVuota } from './oracolo.js';
 import { gettoniRimasti, consumaGettone } from './gettoni.js';
@@ -9,7 +10,7 @@ const attendi = millisecondi => new Promise(risolvi => setTimeout(risolvi, milli
 // ---------- Gli elementi della pagina ----------
 const cabina = document.querySelector('.cabina');
 const schermate = document.querySelectorAll('.schermata');
-const testoGettoni = document.getElementById('testo-gettoni');
+const rigaGettoni = document.getElementById('riga-gettoni');
 const pulsanteSveglia = document.getElementById('sveglia');
 const pulsanteInserisci = document.getElementById('inserisci');
 const moduloNome = document.getElementById('modulo-nome');
@@ -19,9 +20,27 @@ const campoDomanda = document.getElementById('campo-domanda');
 const nomeDomanda = document.getElementById('nome-domanda');
 const avvisoDomanda = document.getElementById('avviso-domanda');
 const contenitoreCarte = document.getElementById('carte');
+const bigliettoSimbolo = document.getElementById('biglietto-simbolo');
 const bigliettoCarta = document.getElementById('biglietto-carta');
 const bigliettoTesto = document.getElementById('biglietto-testo');
 const pulsanteAncora = document.getElementById('ancora');
+ 
+// ---------- I disegni: pezzi di SVG che riusano lo sprite ----------
+function svgGettone() {
+  return '<svg viewBox="0 0 60 60" aria-hidden="true"><use href="#gettone"/></svg>';
+}
+ 
+function svgRetro() {
+  return '<svg viewBox="0 0 60 90" aria-hidden="true"><use href="#retro-carta"/></svg>';
+}
+ 
+function svgFronte(carta) {
+  return `<svg viewBox="0 0 60 90" aria-hidden="true">
+    <use href="#cornice-carta"/>
+    <use href="#simbolo-${carta.id}"/>
+    <text x="30" y="81" text-anchor="middle" font-size="8" fill="currentColor">${carta.nome}</text>
+  </svg>`;
+}
  
 // ---------- I dati della partita in corso ----------
 const partita = { nome: '', domanda: '', idCarta: '' };
@@ -43,7 +62,7 @@ function vaiA(stato) {
 function entraIn(stato) {
   switch (stato) {
     case 'dormiente':
-      testoGettoni.textContent = gettoniRimasti();
+      mostraGettoni();
       break;
     case 'nome':
       campoNome.value = '';
@@ -60,6 +79,17 @@ function entraIn(stato) {
     case 'rito':
       eseguiRito();
       break;
+  }
+}
+ 
+// Una moneta disegnata per ogni gettone rimasto
+function mostraGettoni() {
+  const quanti = gettoniRimasti();
+  rigaGettoni.setAttribute('aria-label', `Gettoni di oggi: ${quanti}`);
+  if (quanti === 0) {
+    rigaGettoni.textContent = 'Nessun gettone per oggi';
+  } else {
+    rigaGettoni.innerHTML = svgGettone().repeat(quanti);
   }
 }
  
@@ -109,7 +139,8 @@ function preparaCarte() {
   for (const carta of treCarteCoperte()) {
     const bottone = document.createElement('button');
     bottone.className = 'carta';
-    bottone.textContent = '?';
+    bottone.innerHTML = svgRetro();
+    bottone.setAttribute('aria-label', 'Carta coperta');
     bottone.addEventListener('click', () => scegliCarta(carta, bottone));
     contenitoreCarte.append(bottone);
   }
@@ -119,7 +150,9 @@ function preparaCarte() {
 async function scegliCarta(carta, bottone) {
   if (partita.idCarta) return;                   // una carta è già stata scelta
   partita.idCarta = carta.id;
-  bottone.textContent = carta.nome;
+  bottone.innerHTML = svgFronte(carta);           // la carta si gira
+  bottone.dataset.tono = carta.tono;             // il CSS sceglie il colore del tono
+  bottone.setAttribute('aria-label', carta.nome);
   bottone.classList.add('girata');
   await attendi(1200);
   vaiA('rito');
@@ -132,6 +165,8 @@ async function eseguiRito() {
   if (r.consumaGettone) {
     consumaGettone();
   }
+  bigliettoSimbolo.innerHTML = svgFronte(r.carta);
+  bigliettoSimbolo.dataset.tono = r.carta.tono;
   bigliettoCarta.textContent = r.carta.frase;
   bigliettoTesto.textContent = r.testo;
   vaiA('biglietto');
@@ -147,4 +182,3 @@ pulsanteAncora.addEventListener('click', controllaGettoni);
 // ---------- Avvio ----------
 await caricaDati();
 vaiA('dormiente');
- 
