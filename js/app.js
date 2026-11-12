@@ -133,14 +133,19 @@ function consegnaDomanda(evento) {
   vaiA('carta');
 }
  
-// Prepara tre carte coperte
+// Prepara tre carte coperte: ognuna ha due facce, retro e fronte
 function preparaCarte() {
   contenitoreCarte.replaceChildren();            // svuota le carte della volta prima
+  contenitoreCarte.classList.remove('scelta');
   for (const carta of treCarteCoperte()) {
     const bottone = document.createElement('button');
     bottone.className = 'carta';
-    bottone.innerHTML = svgRetro();
     bottone.setAttribute('aria-label', 'Carta coperta');
+    bottone.innerHTML = `
+      <div class="carta-interno">
+        <div class="faccia faccia-retro">${svgRetro()}</div>
+        <div class="faccia faccia-fronte"></div>
+      </div>`;
     bottone.addEventListener('click', () => scegliCarta(carta, bottone));
     contenitoreCarte.append(bottone);
   }
@@ -150,17 +155,21 @@ function preparaCarte() {
 async function scegliCarta(carta, bottone) {
   if (partita.idCarta) return;                   // una carta è già stata scelta
   partita.idCarta = carta.id;
-  bottone.innerHTML = svgFronte(carta);           // la carta si gira
+ 
+  // Il fronte viene disegnato solo ora: prima la carta è davvero "coperta"
+  bottone.querySelector('.faccia-fronte').innerHTML = svgFronte(carta);
   bottone.dataset.tono = carta.tono;             // il CSS sceglie il colore del tono
   bottone.setAttribute('aria-label', carta.nome);
-  bottone.classList.add('girata');
-  await attendi(1200);
+  bottone.classList.add('girata');               // il CSS la fa ruotare in 3D
+  contenitoreCarte.classList.add('scelta');      // le altre si ritirano
+ 
+  await attendi(1800);                           // il tempo di girarla e guardarla
   vaiA('rito');
 }
  
 // Rito → biglietto: qui la profezia viene estratta e il gettone consumato
 async function eseguiRito() {
-  await attendi(2500);
+  await attendi(3500);                           // mani, luci, tremolio: il rito prende tempo
   const r = profetizza(partita.domanda, partita.nome, partita.idCarta);
   if (r.consumaGettone) {
     consumaGettone();
