@@ -1,4 +1,3 @@
-
 // app.js – la regia: la macchina a stati del gioco
 import { caricaDati, classifica, profetizza, treCarteCoperte, rispostaVuota } from './oracolo.js';
 import { gettoniRimasti, consumaGettone } from './gettoni.js';
@@ -13,6 +12,7 @@ const schermate = document.querySelectorAll('.schermata');
 const rigaGettoni = document.getElementById('riga-gettoni');
 const pulsanteSveglia = document.getElementById('sveglia');
 const pulsanteInserisci = document.getElementById('inserisci');
+const fessuraGettone = document.querySelector('.fessura-gettone');
 const moduloNome = document.getElementById('modulo-nome');
 const campoNome = document.getElementById('campo-nome');
 const moduloDomanda = document.getElementById('modulo-domanda');
@@ -181,9 +181,113 @@ async function eseguiRito() {
   vaiA('biglietto');
 }
  
+// ---------- Il gettone da trascinare nella fessura ----------
+let trascinamento = null;          // null = nessun trascinamento in corso
+let gettoneInViaggio = false;      // true mentre il gettone sta cadendo nella fessura
+ 
+// Il centro di un elemento sullo schermo, in pixel
+function centro(elemento) {
+  const r = elemento.getBoundingClientRect();
+  return { x: r.left + r.width / 2, y: r.top + r.height / 2 };
+}
+ 
+// Il punto (x, y) è sopra la fessura? Con un margine, perché il dito non è preciso
+function sopraLaFessura(x, y) {
+  const r = fessuraGettone.getBoundingClientRect();
+  const margine = 30;
+  return x > r.left - margine && x < r.right + margine &&
+         y > r.top - margine && y < r.bottom + margine;
+}
+ 
+// Il dito (o il mouse) afferra il gettone
+function afferraGettone(evento) {
+  if (gettoneInViaggio) return;
+  trascinamento = { inizioX: evento.clientX, inizioY: evento.clientY, dx: 0, dy: 0 };
+  pulsanteInserisci.setPointerCapture(evento.pointerId);   // segui questo dito anche fuori dal gettone
+  pulsanteInserisci.classList.add('in-mano');
+}
+ 
+// Il dito si muove: il gettone lo segue
+function muoviGettone(evento) {
+  if (!trascinamento) return;
+  trascinamento.dx = evento.clientX - trascinamento.inizioX;
+  trascinamento.dy = evento.clientY - trascinamento.inizioY;
+  pulsanteInserisci.style.transform = `translate(${trascinamento.dx}px, ${trascinamento.dy}px)`;
+  fessuraGettone.classList.toggle('pronta', sopraLaFessura(evento.clientX, evento.clientY));
+}
+ 
+// Il dito si stacca: dentro la fessura, oppure torna al suo posto
+async function lasciaGettone(evento) {
+  if (!trascinamento) return;
+  const dx = trascinamento.dx;
+  const dy = trascinamento.dy;
+  trascinamento = null;
+  pulsanteInserisci.classList.remove('in-mano');
+  fessuraGettone.classList.remove('pronta');
+ 
+  const spostamento = Math.hypot(dx, dy);        // quanto si è mosso, in pixel
+  if (spostamento < 10 || sopraLaFessura(evento.clientX, evento.clientY)) {
+    await gettoneNellaFessura(dx, dy);           // un tocco, o lasciato sulla fessura
+  } else {
+    await gettoneAlPosto(dx, dy);                // lasciato altrove: torna indietro
+  }
+}
+ 
+// Animazione: il gettone vola sopra la fessura e ci scivola dentro
+async function gettoneNellaFessura(dx, dy) {
+  gettoneInViaggio = true;
+ 
+  // Dov'è la fessura rispetto alla posizione di partenza del gettone?
+  const gettone = centro(pulsanteInserisci);     // include lo spostamento attuale
+  const fessura = centro(fessuraGettone);
+  const versoX = fessura.x - (gettone.x - dx);
+  const versoY = fessura.y - (gettone.y - dy);
+ 
+  const caduta = pulsanteInserisci.animate([
+    { transform: `translate(${dx}px, ${dy}px)` },
+    { transform: `translate(${versoX}px, ${versoY - 40}px) scale(0.5)`, offset: 0.6 },
+    { transform: `translate(${versoX}px, ${versoY}px) scale(0.15)`, opacity: 0 }
+  ], { duration: 700, easing: 'ease-in', fill: 'forwards' });
+  await caduta.finished;
+ 
+  // La fessura si illumina: il gettone è stato accettato
+  await fessuraGettone.animate([
+    { boxShadow: '0 0 0 #ffd36b' },
+    { boxShadow: '0 0 20px #ffd36b' },
+    { boxShadow: '0 0 0 #ffd36b' }
+  ], { duration: 500 }).finished;
+ 
+  inserisciGettone();                            // la macchina a stati va avanti
+ 
+  // Rimettiamo il gettone a posto, pronto per la prossima volta (ora è nascosto)
+  caduta.cancel();
+  pulsanteInserisci.style.transform = '';
+  gettoneInViaggio = false;
+}
+ 
+// Animazione: il gettone torna dov'era, con un piccolo rimbalzo
+async function gettoneAlPosto(dx, dy) {
+  await pulsanteInserisci.animate([
+    { transform: `translate(${dx}px, ${dy}px)` },
+    { transform: 'translate(0, 0)' }
+  ], { duration: 400, easing: 'cubic-bezier(0.3, 1.6, 0.6, 1)' }).finished;
+  pulsanteInserisci.style.transform = '';
+}
+ 
+// Dalla tastiera (Invio sul gettone) non si può trascinare: lo inseriamo noi
+function gettoneDaTastiera(evento) {
+  if (evento.detail === 0 && !gettoneInViaggio) {   // detail 0 = click senza dito né mouse
+    gettoneNellaFessura(0, 0);
+  }
+}
+ 
 // ---------- Colleghiamo gli eventi ----------
 pulsanteSveglia.addEventListener('click', controllaGettoni);
-pulsanteInserisci.addEventListener('click', inserisciGettone);
+pulsanteInserisci.addEventListener('pointerdown', afferraGettone);
+pulsanteInserisci.addEventListener('pointermove', muoviGettone);
+pulsanteInserisci.addEventListener('pointerup', lasciaGettone);
+pulsanteInserisci.addEventListener('pointercancel', lasciaGettone);
+pulsanteInserisci.addEventListener('click', gettoneDaTastiera);
 moduloNome.addEventListener('submit', confermaNome);
 moduloDomanda.addEventListener('submit', consegnaDomanda);
 pulsanteAncora.addEventListener('click', controllaGettoni);
@@ -191,3 +295,4 @@ pulsanteAncora.addEventListener('click', controllaGettoni);
 // ---------- Avvio ----------
 await caricaDati();
 vaiA('dormiente');
+ 
