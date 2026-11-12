@@ -88,7 +88,7 @@ export function avviaRonzio() {
   const volume = ctx.createGain();
   oscillatore.type = 'sawtooth';
   oscillatore.frequency.value = 55;                 // molto grave
-  filtro.type = 'lowpass';                          // lascia passare solo i bassi: un ronzio, non un ronzare
+  filtro.type = 'lowpass';                          // lascia passare solo i bassi: un brontolio cupo, non un fischio
   filtro.frequency.value = 300;
   volume.gain.setValueAtTime(0.0001, t);
   volume.gain.exponentialRampToValueAtTime(0.12, t + 0.5);
