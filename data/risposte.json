@@ -123,7 +123,7 @@
         {
           "id": "am-a04",
           "tono": "ammonitore",
-          "testo": "Una porta chiusa protegge quanto una porta aperta. Non forzarla."
+          "testo": "Una porta chiusa non è sempre un rifiuto: a volte è una protezione. Non forzarla."
         },
         {
           "id": "am-a05",
@@ -322,7 +322,7 @@
         {
           "id": "de-a03",
           "tono": "ammonitore",
-          "testo": "La borsa piena attira mani lèste. Custodisci ciò che hai."
+          "testo": "La borsa piena attira mani leste. Custodisci ciò che hai."
         },
         {
           "id": "de-a04",
@@ -362,7 +362,7 @@
         {
           "id": "de-e01",
           "tono": "enigmatico",
-          "testo": "Il tesoro che cerchi non è fatto di metallo, eppure vale il suo peso in oro."
+          "testo": "Il tesoro che cerchi non è fatto di metallo, eppure vale più dell'oro."
         },
         {
           "id": "de-e02",
@@ -402,7 +402,7 @@
         {
           "id": "de-e09",
           "tono": "enigmatico",
-          "testo": "Il denaro scorre come acqua: dove trova un letto, resta."
+          "testo": "Il denaro è come l'acqua: si ferma solo dove trova un argine."
         },
         {
           "id": "de-e10",
@@ -467,7 +467,7 @@
         {
           "id": "ds-a01",
           "tono": "ammonitore",
-          "testo": "Non è ancora il tempo, {nome}. Il frutto acerbo lega la bocca."
+          "testo": "Non è ancora il tempo, {nome}. Il frutto colto acerbo lega i denti."
         },
         {
           "id": "ds-a02",
@@ -532,7 +532,7 @@
         {
           "id": "ds-e04",
           "tono": "enigmatico",
-          "testo": "Quando sentirai suonare tre volte, saprai."
+          "testo": "Quando sentirai bussare tre volte, saprai."
         },
         {
           "id": "ds-e05",
@@ -547,7 +547,7 @@
         {
           "id": "ds-e07",
           "tono": "enigmatico",
-          "testo": "Il tempo darà la sua risposta, e sarà diversa dalla tua domanda."
+          "testo": "Il tempo darà la sua risposta, e non sarà quella che ti aspetti."
         },
         {
           "id": "ds-e08",
@@ -644,7 +644,7 @@
       "id": "chiave",
       "nome": "La Chiave",
       "tono": "propizio",
-      "frase": "La Chiave si è voltata per te..."
+      "frase": "La Chiave ha aperto una porta per te..."
     },
     {
       "id": "torre",
