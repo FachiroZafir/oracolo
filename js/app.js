@@ -2,6 +2,9 @@
 import { caricaDati, classifica, profetizza, treCarteCoperte, rispostaVuota } from './oracolo.js';
 import { gettoniRimasti, consumaGettone } from './gettoni.js';
 import { leggiSessione, scriviSessione } from './memoria.js';
+import { disegnaBiglietto, condividiBiglietto, condivisionePossibile } from './biglietto.js';
+import { sbloccaAudio, audioAttivo, impostaAudio, suonaCarillon, suonaMoneta,
+         suonaGong, suonaScatti, avviaRonzio, fermaRonzio } from './audio.js';
  
 // Una pausa che si può "aspettare" con await (es. await attendi(1000) = 1 secondo)
 const attendi = millisecondi => new Promise(risolvi => setTimeout(risolvi, millisecondi));
@@ -20,9 +23,13 @@ const campoDomanda = document.getElementById('campo-domanda');
 const nomeDomanda = document.getElementById('nome-domanda');
 const avvisoDomanda = document.getElementById('avviso-domanda');
 const contenitoreCarte = document.getElementById('carte');
-const bigliettoSimbolo = document.getElementById('biglietto-simbolo');
-const bigliettoCarta = document.getElementById('biglietto-carta');
-const bigliettoTesto = document.getElementById('biglietto-testo');
+const canvasBiglietto = document.getElementById('biglietto');
+const testoProfezia = document.getElementById('testo-profezia');
+const pulsanteCondividi = document.getElementById('condividi');
+const interruttoreAudio = document.getElementById('interruttore-audio');
+ 
+// Chi ha chiesto "Riduci movimento" non vede le animazioni lunghe create da JavaScript
+const movimentoRidotto = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const pulsanteAncora = document.getElementById('ancora');
  
 // ---------- I disegni: pezzi di SVG che riusano lo sprite ----------
@@ -167,18 +174,53 @@ async function scegliCarta(carta, bottone) {
   vaiA('rito');
 }
  
-// Rito → biglietto: qui la profezia viene estratta e il gettone consumato
+// Rito → biglietto: qui la profezia viene estratta, il gettone consumato e il biglietto stampato
 async function eseguiRito() {
+  avviaRonzio();
   await attendi(3500);                           // mani, luci, tremolio: il rito prende tempo
   const r = profetizza(partita.domanda, partita.nome, partita.idCarta);
   if (r.consumaGettone) {
     consumaGettone();
   }
-  bigliettoSimbolo.innerHTML = svgFronte(r.carta);
-  bigliettoSimbolo.dataset.tono = r.carta.tono;
-  bigliettoCarta.textContent = r.carta.frase;
-  bigliettoTesto.textContent = r.testo;
+  fermaRonzio();
+  suonaGong();
+ 
+  await disegnaBiglietto(canvasBiglietto, { nome: partita.nome, carta: r.carta, testo: r.testo });
+  testoProfezia.textContent = `${r.carta.frase} ${r.testo}`;   // per i lettori vocali
+  pulsanteCondividi.textContent = condivisionePossibile() ? 'Condividi' : 'Salva immagine';
   vaiA('biglietto');
+  stampaBiglietto();
+}
+ 
+// Il bigliettino esce dalla fessura a scatti, come da una stampante meccanica
+function stampaBiglietto() {
+  const scatti = 8;
+  const durata = movimentoRidotto ? 1 : 1600;
+  canvasBiglietto.animate([
+    { transform: 'translateY(-100%)' },
+    { transform: 'translateY(0)' }
+  ], { duration: durata, easing: `steps(${scatti}, end)` });
+  suonaScatti(scatti, durata / scatti / 1000);
+}
+ 
+// Il primo tocco sveglia l'oracolo e sblocca l'audio
+function svegliaOracolo() {
+  sbloccaAudio();
+  suonaCarillon();
+  controllaGettoni();
+}
+ 
+// Interruttore dei suoni
+function aggiornaInterruttore() {
+  const acceso = audioAttivo();
+  interruttoreAudio.textContent = acceso ? 'Suoni: sì' : 'Suoni: no';
+  interruttoreAudio.setAttribute('aria-pressed', acceso);
+}
+ 
+function cambiaAudio() {
+  sbloccaAudio();
+  impostaAudio(!audioAttivo());
+  aggiornaInterruttore();
 }
  
 // ---------- Il gettone da trascinare nella fessura ----------
@@ -249,6 +291,7 @@ async function gettoneNellaFessura(dx, dy) {
     { transform: `translate(${versoX}px, ${versoY}px) scale(0.15)`, opacity: 0 }
   ], { duration: 700, easing: 'ease-in', fill: 'forwards' });
   await caduta.finished;
+  suonaMoneta();
  
   // La fessura si illumina: il gettone è stato accettato
   await fessuraGettone.animate([
@@ -282,7 +325,7 @@ function gettoneDaTastiera(evento) {
 }
  
 // ---------- Colleghiamo gli eventi ----------
-pulsanteSveglia.addEventListener('click', controllaGettoni);
+pulsanteSveglia.addEventListener('click', svegliaOracolo);
 pulsanteInserisci.addEventListener('pointerdown', afferraGettone);
 pulsanteInserisci.addEventListener('pointermove', muoviGettone);
 pulsanteInserisci.addEventListener('pointerup', lasciaGettone);
@@ -291,8 +334,11 @@ pulsanteInserisci.addEventListener('click', gettoneDaTastiera);
 moduloNome.addEventListener('submit', confermaNome);
 moduloDomanda.addEventListener('submit', consegnaDomanda);
 pulsanteAncora.addEventListener('click', controllaGettoni);
+pulsanteCondividi.addEventListener('click', condividiBiglietto);
+interruttoreAudio.addEventListener('click', cambiaAudio);
  
 // ---------- Avvio ----------
 await caricaDati();
+aggiornaInterruttore();
 vaiA('dormiente');
  
