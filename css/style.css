@@ -106,25 +106,18 @@ body {
   font-style: italic;
 }
 
-/* Le tre carte coperte */
+/* Le tre carte: un bottone che contiene un SVG */
 .carte { display: flex; gap: 12px; justify-content: center; }
 
 .carta {
   width: 80px;
   height: 120px;
-  font: inherit;
-  font-size: 1.6rem;
-  background: var(--velluto);
-  color: var(--oro);
-  border: 2px solid var(--oro);
-  border-radius: 8px;
+  padding: 0;
+  background: none;
+  border: none;
 }
 
-.carta.girata {
-  background: var(--avorio);
-  color: var(--legno-scuro);
-  font-size: 0.9rem;
-}
+.carta svg { width: 100%; height: 100%; display: block; }
 
 /* Il bigliettino, per ora solo testo su cartoncino */
 .biglietto {
@@ -158,3 +151,26 @@ body {
 #alone-sfera { opacity: 0; transition: opacity 0.8s; }
 .cabina.sveglio #alone-sfera { opacity: 0.25; }
 .cabina[data-stato="rito"] #alone-sfera { opacity: 0.6; }
+
+/* === Fase 4: carte e gettone === */
+/* Lo sprite non si vede: contiene solo i disegni da riusare.
+   Niente display:none, altrimenti alcune sfumature smettono di funzionare */
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+
+/* Il colore dei simboli dipende dal tono della carta (currentColor) */
+[data-tono="propizio"]   { color: #9a6b12; }
+[data-tono="ammonitore"] { color: #8e1c1c; }
+[data-tono="enigmatico"] { color: #4b3a8c; }
+
+/* Le monete dei gettoni rimasti */
+.riga-gettoni { display: flex; gap: 8px; justify-content: center; min-height: 28px; }
+.riga-gettoni svg { width: 28px; height: 28px; }
+
+/* Il gettone da toccare */
+.gettone { width: 76px; height: 76px; padding: 0; background: none; border: none; border-radius: 50%; }
+.gettone svg { width: 100%; height: 100%; display: block; }
+.gettone:active { transform: scale(0.94); }
+
+/* Il simbolo della carta sul bigliettino */
+.biglietto-simbolo { width: 40px; height: 60px; margin: 0 auto 8px; }
+.biglietto-simbolo svg { width: 100%; height: 100%; display: block; }
