@@ -254,15 +254,21 @@
     </section>
 
     <section class="schermata" data-stato="biglietto" hidden>
-      <div class="biglietto">
-        <div class="biglietto-simbolo" id="biglietto-simbolo"></div>
-        <p class="biglietto-carta" id="biglietto-carta"></p>
-        <p id="biglietto-testo"></p>
+      <!-- Il bigliettino esce da qui: la parte di sopra fa da fessura -->
+      <div class="uscita-biglietto">
+        <canvas id="biglietto" aria-label="Il bigliettino con la tua profezia"></canvas>
       </div>
-      <button class="pulsante" id="ancora">Un'altra profezia</button>
+      <p class="sr-only" id="testo-profezia" aria-live="polite"></p>
+      <div class="azioni-biglietto">
+        <button class="pulsante" id="condividi">Condividi</button>
+        <button class="pulsante secondario" id="ancora">Un'altra profezia</button>
+      </div>
     </section>
 
-    <p class="nota-legale">Solo per divertimento: l'oracolo non prevede il futuro.</p>
+    <div class="piede">
+      <p class="nota-legale">Solo per divertimento: l'oracolo non prevede il futuro.</p>
+      <button class="interruttore-audio" id="interruttore-audio" aria-pressed="true">Suoni: sì</button>
+    </div>
   </main>
 </body>
 </html>
