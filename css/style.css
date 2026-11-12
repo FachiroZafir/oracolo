@@ -330,3 +330,21 @@ body {
     transition-duration: 0.01s !important;
   }
 }
+
+/* =====================================================
+   FASE 5 – Lezione 11: il gettone da trascinare
+   ===================================================== */
+.gettone {
+  position: relative;
+  z-index: 10;                 /* mentre lo trascini passa sopra a tutto */
+  touch-action: none;          /* il dito trascina il gettone, non scorre la pagina */
+  cursor: grab;
+}
+
+.gettone.in-mano {
+  cursor: grabbing;
+  filter: drop-shadow(0 8px 6px rgba(0, 0, 0, 0.5));   /* ombra: il gettone è "sollevato" */
+}
+
+.fessura-gettone { transition: box-shadow 0.2s; }
+.fessura-gettone.pronta { box-shadow: 0 0 14px #ffd36b; }   /* "lascialo qui!" */
