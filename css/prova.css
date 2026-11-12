@@ -1,0 +1,14 @@
+body {
+  margin: 0;
+  padding: 16px;
+  background: #1a0f0a;
+  color: #f3d9a4;
+  font-family: Georgia, serif;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+label { display: flex; flex-direction: column; gap: 4px; }
+input, textarea, select, button { font: inherit; padding: 8px; border-radius: 8px; border: 1px solid #d4a24c; }
+button { background: #d4a24c; color: #1a0f0a; border: none; }
+pre { white-space: pre-wrap; font-family: inherit; border-top: 1px solid #d4a24c; padding-top: 12px; }
