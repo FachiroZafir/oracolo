@@ -11,7 +11,96 @@
   <main class="cabina">
     <div class="insegna">Gran Fachiro Zafir</div>
     <div class="vetrina">
-      <div class="fachiro"></div>
+      <svg class="fachiro" viewBox="0 0 300 260" role="img" aria-label="Il Gran Fachiro Zafir con la sfera di cristallo">
+        <defs>
+          <!-- Sfumatura della sfera: luminosa al centro, viola ai bordi -->
+          <radialGradient id="luce-sfera" cx="40%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#ffffff"/>
+            <stop offset="45%" stop-color="#b9c8f0"/>
+            <stop offset="100%" stop-color="#4b3a8c"/>
+          </radialGradient>
+        </defs>
+
+        <!-- 1. Tende sullo sfondo -->
+        <g id="tende" fill="#4a1415">
+          <path d="M0 0 H70 Q40 90 0 140 Z"/>
+          <path d="M300 0 H230 Q260 90 300 140 Z"/>
+        </g>
+
+        <!-- 2. Il corpo: mantello rosso con bordo d'oro -->
+        <g id="busto">
+          <path d="M62 260 L92 172 Q150 140 208 172 L238 260 Z" fill="#8e1c1c" stroke="#d4a24c" stroke-width="3"/>
+          <path d="M128 152 L150 200 L172 152" fill="none" stroke="#d4a24c" stroke-width="4"/>
+        </g>
+
+        <!-- 3. Le braccia (maniche) -->
+        <g id="braccia" fill="none" stroke="#8e1c1c" stroke-width="20" stroke-linecap="round">
+          <path d="M100 178 Q84 205 108 214"/>
+          <path d="M200 178 Q216 205 192 214"/>
+        </g>
+
+        <!-- 4. Collo e testa -->
+        <rect x="139" y="132" width="22" height="26" fill="#9c6a47"/>
+        <g id="testa">
+          <ellipse cx="121" cy="112" rx="6" ry="9" fill="#9c6a47"/>
+          <ellipse cx="179" cy="112" rx="6" ry="9" fill="#9c6a47"/>
+          <circle cx="121" cy="124" r="3" fill="#d4a24c"/>
+          <circle cx="179" cy="124" r="3" fill="#d4a24c"/>
+          <ellipse cx="150" cy="112" rx="29" ry="34" fill="#b07a52"/>
+
+          <!-- Sopracciglia -->
+          <path d="M131 99 Q139 94 146 99" fill="none" stroke="#2b1a12" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M154 99 Q161 94 169 99" fill="none" stroke="#2b1a12" stroke-width="3.5" stroke-linecap="round"/>
+
+          <!-- Occhi chiusi: visibili quando l'oracolo dorme -->
+          <g id="occhi-chiusi" fill="none" stroke="#2b1a12" stroke-width="2.5" stroke-linecap="round">
+            <path d="M132 109 Q139 113 146 109"/>
+            <path d="M154 109 Q161 113 168 109"/>
+          </g>
+
+          <!-- Occhi aperti: visibili quando l'oracolo è sveglio -->
+          <g id="occhi-aperti">
+            <ellipse cx="139" cy="108" rx="7" ry="5" fill="#fff7e6"/>
+            <ellipse cx="161" cy="108" rx="7" ry="5" fill="#fff7e6"/>
+            <circle class="pupilla" cx="139" cy="108" r="3" fill="#2b1a12"/>
+            <circle class="pupilla" cx="161" cy="108" r="3" fill="#2b1a12"/>
+          </g>
+
+          <!-- Naso -->
+          <path d="M150 110 Q145 122 150 124" fill="none" stroke="#7a4f33" stroke-width="2" stroke-linecap="round"/>
+
+          <!-- Barba e baffi -->
+          <path id="barba" d="M124 122 Q128 150 150 172 Q172 150 176 122 Q165 136 150 136 Q135 136 124 122 Z" fill="#2b1a12"/>
+          <path id="baffi" d="M150 128 Q140 124 132 130 Q128 134 124 130 M150 128 Q160 124 168 130 Q172 134 176 130" fill="none" stroke="#2b1a12" stroke-width="3.5" stroke-linecap="round"/>
+        </g>
+
+        <!-- 5. Il turbante con la gemma e la piuma -->
+        <g id="turbante">
+          <path d="M150 46 Q168 30 174 6" fill="none" stroke="#d4a24c" stroke-width="3" stroke-linecap="round"/>
+          <ellipse cx="150" cy="70" rx="40" ry="26" fill="#efe6d2"/>
+          <path d="M112 74 Q150 56 188 74" fill="none" stroke="#cfc3a8" stroke-width="3"/>
+          <path d="M114 82 Q150 64 186 82" fill="none" stroke="#cfc3a8" stroke-width="3"/>
+          <circle cx="150" cy="70" r="9" fill="#d4a24c"/>
+          <circle id="gemma" cx="150" cy="70" r="6" fill="#1f8a63"/>
+        </g>
+
+        <!-- 6. L'alone della sfera, dietro al tavolino (acceso dal CSS) -->
+        <circle id="alone-sfera" cx="150" cy="206" r="40" fill="#d4a24c"/>
+
+        <!-- 7. Il tavolino -->
+        <rect id="tavolo" x="70" y="236" width="160" height="24" rx="4" fill="#3b2314" stroke="#d4a24c" stroke-width="2"/>
+
+        <!-- 8. La sfera di cristallo e il suo piedistallo -->
+        <path d="M134 236 L140 226 H160 L166 236 Z" fill="#d4a24c"/>
+        <circle id="sfera" cx="150" cy="204" r="26" fill="url(#luce-sfera)"/>
+
+        <!-- 9. Le mani, sopra la sfera -->
+        <g id="mani" fill="#b07a52">
+          <ellipse id="mano-sinistra" cx="116" cy="208" rx="13" ry="9" transform="rotate(-25 116 208)"/>
+          <ellipse id="mano-destra" cx="184" cy="208" rx="13" ry="9" transform="rotate(25 184 208)"/>
+        </g>
+      </svg>
+
     </div>
     <div class="fessure">
       <div class="fessura-biglietto"></div>
