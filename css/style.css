@@ -39,7 +39,7 @@ body {
 }
 .vetrina {
   width: 100%;
-  height: 30vh;
+  height: 40vh;
   background: var(--velluto);
   border: 4px solid var(--oro);
   border-radius: 12px;
