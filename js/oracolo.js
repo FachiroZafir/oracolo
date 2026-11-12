@@ -17,7 +17,7 @@ export function normalizza(testo) {
   return testo
     .toLowerCase()                       // tutto minuscolo
     .normalize('NFD')                    // separa le lettere dagli accenti
-    .replace(/[̀-ͯ]/g, '')     // butta via gli accenti
+    .replace(/[\u0300-\u036f]/g, '')     // butta via gli accenti
     .replace(/[^a-z0-9]/g, ' ')          // tutto ciò che non è lettera o cifra diventa spazio
     .split(' ')                          // spezza sugli spazi
     .filter(parola => parola !== '');    // toglie i pezzi vuoti
